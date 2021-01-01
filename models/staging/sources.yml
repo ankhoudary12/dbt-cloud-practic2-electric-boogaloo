@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt-tutorial
+    description: Clone of a Postgres application database
+    tables: 
+      - name: customers
+        description: Raw customer data
+        columns:
+          - name: id
+            description: Primary key for customers
+            tests:
+              - unique
+              - not_null
+      - name: orders
+        description: Raw order data
+        columns: 
+          - name: id
+            description: Primary key for orders
+            tests:
+              - unique
+              - not_null
+
+  - name: stripe
+    database: dbt-tutorial
+    description: Clone of a Postgres payment application db
+    tables:
+    - name: payment
+      description: Raw payment data
+      columns:
+        - name: orderid
+          description: References orderid 
+          tests:
+            - not_null
